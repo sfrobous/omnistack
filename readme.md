@@ -1,0 +1,1 @@
+Repositório para projetos da semana Omnistack
