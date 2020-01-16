@@ -13,7 +13,7 @@ function DevItem(props) {
                 <span>{dev.techs.join(', ')}</span>
             </div>
             <p>{dev.bio}</p>
-            <a href={`https://github.com/sfrobous${dev.githubUsername}`}>Access Github profile</a>
+            <a href={`https://github.com/${dev.githubUsername}`}>Access Github profile</a>
         </li>
     );
 }
