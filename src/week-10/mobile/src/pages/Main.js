@@ -66,7 +66,7 @@ function Main({ navigation }) {
                 onRegionChangeComplete={handleRegionChanged}
             >
                 {devs.map(dev =>
-                    <Marker key={dev._id} coordinate={{ latitude: dev.location.coordinates[0], longitude: dev.location.coordinates[1] }}>
+                    <Marker key={dev._id} coordinate={{ latitude: dev.location.coordinates[1], longitude: dev.location.coordinates[0] }}>
                         <Image style={style.avatar} source={{ uri: dev.avatarUrl }} />
                         <Callout onPress={() => { navigation.navigate('Profile', { githubUsername: dev.githubUsername }) }}>
                             <View style={style.callout}>
