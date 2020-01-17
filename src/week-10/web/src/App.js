@@ -21,7 +21,7 @@ function App() {
 
   async function handleAddDev(obj) {
     const response = await api.post('/devs', obj);
-    setDevs([...devs, response.data]);
+    setDevs([...devs, response.data]);f
   }
 
   return (
