@@ -26,6 +26,6 @@ module.exports = {
             State: state
         });
 
-        return response.json({ id });
+        return response.json({ Id: id });
     }
 }
