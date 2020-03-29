@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const { Segments, Joi } = require('celebrate');
 
 module.exports = {
     async index(request, response) {
@@ -21,6 +22,11 @@ module.exports = {
 
         response.header('X-Total-Count', count['count(*)']);
         return response.json(incidents);
+    },
+    indexValidation: {
+        [Segments.QUERY]: Joi.object().keys({
+            page: Joi.number()
+        })
     },
     async create(request, response) {
         const { title, description, value } = request.body;
@@ -53,5 +59,13 @@ module.exports = {
             .delete();
 
         return response.status(204).send();
+    },
+    deleteValidation: {
+        [Segments.PARAMS]: Joi.object().keys({
+            id: Joi.number().required()
+        }),
+        [Segments.HEADERS]: Joi.object({
+            authorization: Joi.string().required()
+        }).unknown()
     }
 }

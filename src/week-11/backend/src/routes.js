@@ -1,4 +1,5 @@
 const express = require('express');
+const { celebrate } = require('celebrate');
 
 const OngController = require('./controllers/NGOController');
 const IncidentController = require('./controllers/IncidentController');
@@ -9,13 +10,13 @@ const routes = express.Router();
 
 routes.post('/sessions', SessionController.create)
 
-routes.get('/ngos',  OngController.index);
-routes.post('/ngos', OngController.create);
+routes.get('/ngos', OngController.index);
+routes.post('/ngos', celebrate(OngController.createValidation), OngController.create);
 
-routes.get('/incidents', IncidentController.index);
+routes.get('/incidents', celebrate(IncidentController.indexValidation), IncidentController.index);
 routes.post('/incidents', IncidentController.create);
-routes.delete('/incidents/:id', IncidentController.delete);
+routes.delete('/incidents/:id', celebrate(IncidentController.deleteValidation), IncidentController.delete);
 
-routes.get('/profile', ProfileController.index);
+routes.get('/profile', celebrate(ProfileController.indexValidation), ProfileController.index);
 
 module.exports = routes;

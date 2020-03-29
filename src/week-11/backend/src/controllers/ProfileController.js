@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const { Segments, Joi } = require('celebrate');
 
 module.exports = {
     async index(request, response) {
@@ -9,5 +10,10 @@ module.exports = {
             .select('*');
 
         return response.json(incidents);
+    },
+    indexValidation: {
+        [Segments.HEADERS]: Joi.object({
+            authorization: Joi.string().required()
+        }).unknown()
     }
 };
